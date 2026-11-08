@@ -26,12 +26,14 @@ const VISION_PAIRING_FILENAME: &str = "rp_pairing_file.plist";
 /// rebelancap/SideStore fork until the fixes land upstream. There is no nightly or
 /// LiveContainer visionOS build, so a Vision Pro always installs this.
 ///
-/// Pinned to the `visionos-0.7.0` release, which carries the same GSA fix as
-/// iloader 2.3.5 (Apple started returning HTTP 503 for the Xcode client
-/// identifier, so sign-in now uses the akd one). Users updating from an earlier
-/// build must reset `adi.pb` in SideStore's settings before signing in again.
+/// Pinned to muzam2/SideStore `visionos-0.7.1-signin` (2026-11-08): rebelancap's
+/// `visionos-0.7.0` plus the sign-in identity fix. 0.7.0 failed every Apple ID with
+/// `-80045` because AnisetteKit hard-coded a Mac client identity that no longer
+/// matched the anisette/provisioning data; 0.7.1 takes the identity from the anisette
+/// server's `/v3/client_info` (as isideload 0.5.x does) and re-provisions `adi.pb` if
+/// it was made under another identity, so no manual reset is needed.
 const SIDESTORE_VP_URL: &str =
-    "https://github.com/rebelancap/SideStore/releases/download/visionos-0.7.0/SideStore-visionOS.ipa";
+    "https://github.com/muzam2/SideStore/releases/download/visionos-0.7.1-signin/SideStore-visionOS.ipa";
 
 /// LiveContainer with the visionOS-patched SideStore embedded (built by
 /// rebelancap/LiveContainer's CI from the patched LiveContainer/SideStore). The
