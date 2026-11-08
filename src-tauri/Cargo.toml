@@ -56,3 +56,10 @@ async-dnssd = "0.5.1"
 [target.'cfg(not(target_os = "macos"))'.dependencies]
 mdns-sd = "0.19"
 
+
+# Vision Pro first-time pairing (from rebelancap/iloader visionos-tunnel): published idevice
+# answers `awaitingUserConsent` with PIN "000000" (a Trust-dialog assumption); a Vision Pro
+# sends that while its code screen is up, so pairing failed with "missing server proof".
+# vendor/idevice = idevice 0.1.68 + that one patch (src/remote_pairing/mod.rs).
+[patch.crates-io]
+idevice = { path = "vendor/idevice" }
