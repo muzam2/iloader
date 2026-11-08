@@ -22,7 +22,7 @@ tauri = { version = "2", features = ["devtools"] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-idevice = { version = "0.1.68", features = ["usbmuxd", "house_arrest", "afc", "core_device_proxy", "remote_pairing", "tcp", "tunnel_tcp_stack", "xpc", "rsd", "pair"] }
+idevice = { version = "0.1.68", features = ["usbmuxd", "house_arrest", "afc", "installation_proxy", "core_device_proxy", "remote_pairing", "tcp", "tunnel_tcp_stack", "xpc", "rsd", "pair"] }
 isideload = { version = "0.5.2", features = ["fs-storage"] } # , path = "../../isideload/isideload" } #, git = "https://github.com/nab138/isideload", package = "isideload", branch = "apple-codesign-quick" }
 keyring = { version = "3.6.3", features = ["apple-native", "windows-native", "linux-native-sync-persistent"] }
 tauri-plugin-store = "2"
@@ -47,3 +47,12 @@ uuid = { version = "1", features = ["v4"] }
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-updater = "2"
+
+# Vision Pro discovery (ported from rebelancap/iloader visionos-tunnel). On macOS the
+# fork goes through the system Bonjour daemon; elsewhere mdns-sd.
+[target.'cfg(target_os = "macos")'.dependencies]
+async-dnssd = "0.5.1"
+
+[target.'cfg(not(target_os = "macos"))'.dependencies]
+mdns-sd = "0.19"
+
