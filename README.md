@@ -18,6 +18,13 @@
 [![Build iloader](https://img.shields.io/github/actions/workflow/status/nab138/iloader/build.yml?style=flat&logo=github&logoColor=white&label=Build%20iloader)](https://github.com/nab138/iloader/actions/workflows/build.yml) ![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnab138%2F28258aff7e3f1d3a3084a21f4cff2e57%2Fraw%2Filoader_downloads.json&style=flat)
 [![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/nab138)
 
+> [!NOTE]
+> **This is a fork with Apple Vision Pro support** (branch `vp-on-2.4.1`, based on iloader
+> 2.4.1 with [rebelancap's](https://github.com/rebelancap/iloader) wireless Vision Pro
+> transport). It is not the official iloader; for iPhone and iPad use
+> [nab138/iloader](https://github.com/nab138/iloader). See
+> [Apple Vision Pro](#apple-vision-pro) below.
+
 Install SideStore (or other apps) and import your pairing file with ease
 
 **This repository and [iloader.app](https://iloader.app) are the only official ways to download iloader. There is also an unofficial [Homebrew cask](https://formulae.brew.sh/cask/iloader), an unofficial [AUR package](https://aur.archlinux.org/packages/iloader-bin), and an unofficial [Fedora COPR repository](https://copr.fedorainfracloud.org/coprs/anudeepd/iloader) maintained by the community. Do not download from any other sources or websites.**
@@ -77,6 +84,27 @@ const languages = [
 You can also add your name to the translators section of the README.
 
 Thank you for translating!
+
+## Apple Vision Pro
+
+A Vision Pro has no USB port, so this build pairs with it over Wi-Fi.
+
+1. Download the Linux build from this fork's
+   [releases](https://github.com/muzam2/iloader/releases) (`.deb` for Debian/Ubuntu, or the
+   plain binary in the `.tar.gz`), or build from source as described below. There are no
+   Windows or macOS builds of this fork; build from source there.
+2. On the headset turn on Developer Mode (Settings → Privacy & Security), then open
+   **Settings → General → Remote Devices** and leave that screen up. The headset only
+   announces itself while it is open. Computer and headset must be on the same network.
+3. Start iloader. The Vision Pro appears under Devices; select it, type the six-digit code
+   the headset shows and pair. This is needed once.
+4. Sign in with your Apple ID, then either press the SideStore button (installs
+   [SideStore for Apple Vision Pro 0.7.3](https://github.com/muzam2/SideStore/releases/tag/visionos-0.7.3-autorenew))
+   or use **Import IPA** to install any other `.ipa`.
+5. On the headset: Settings → General → VPN & Device Management → trust your Apple ID.
+
+Keep the headset awake while an app uploads; the install times out if it goes to sleep.
+This build does not update itself (upstream's updates have no Vision Pro support).
 
 ## Building from source
 

@@ -22,7 +22,6 @@ import { AppIds } from "./pages/AppIds";
 import { Settings } from "./pages/Settings";
 import { Pairing } from "./pages/Pairing";
 import { getVersion } from "@tauri-apps/api/app";
-import { checkForUpdates } from "./update";
 import logo from "./iloader.svg";
 import { GlassCard } from "./components/GlassCard";
 import { useTranslation } from "react-i18next";
@@ -68,9 +67,8 @@ function App() {
     fetchVersion();
   }, []);
 
-  useEffect(() => {
-    checkForUpdates();
-  }, []);
+  // This fork does not check for updates: the updater is configured for upstream's
+  // releases, which have no Apple Vision Pro support, and would replace this build.
 
   const shortcutLabel = useCallback(
     (mac: string, windows: string, linux?: string) => {
