@@ -204,9 +204,11 @@ async fn login(
                 .set_serial_number("0".to_string())
                 .set_storage(create_sideloading_storage(app)?)
                 // just temporary while waiting for the anisette servers to start reporting this
+                // "Mac OS X", not "macOS": since 2026-11-19 gsa.apple.com answers 503 to any request
+                // whose X-MMe-Client-Info contains "<macOS;" (nab138/iloader#1203, SideStore#1745).
                 .set_client_info_override(Some(AnisetteClientInfo {
                     client_info:
-                        "<Mac15,7> <macOS;27.0;26A5378j> <com.apple.AuthKit/1 (com.apple.akd/1.0)>"
+                        "<Mac15,7> <Mac OS X;27.0;26A5378j> <com.apple.AuthKit/1 (com.apple.akd/1.0)>"
                             .to_string(),
                     user_agent: "akd/1.0 CFNetwork/811.5.4".to_string(),
                 }))
